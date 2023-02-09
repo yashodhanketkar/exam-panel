@@ -1,0 +1,22 @@
+{
+  "typescript.tsdk": "node_modules\\typescript\\lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "editor.fontLigatures": true,
+  "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
+  "typescript.inlayHints.parameterNames.enabled": "all",
+  "typescript.inlayHints.parameterTypes.enabled": true,
+  "typescript.inlayHints.propertyDeclarationTypes.enabled": true,
+  "editor.inlayHints.enabled": "offUnlessPressed",
+  "[typescriptreact]": {
+    "editor.formatOnSave": true,
+    "editor.tabSize": 2,
+  },
+  "[css]": {
+    "editor.suggest.insertMode": "replace",
+    "gitlens.codeLens.scopes": [
+      "document"
+    ],
+    "editor.tabSize": 2,
+    "editor.formatOnSave": true,
+  },
+}
