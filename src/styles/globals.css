@@ -48,5 +48,46 @@ span {
   position: relative;
   width: 100%;
   min-height: 2em;
-  background-color: brown;
+}
+
+.col {
+  width: 50%;
+}
+
+.answered {
+  background-color: green;
+}
+
+.not-visited {
+  background-color: gray;
+}
+
+.dumped {
+  background-color: white;
+}
+
+.reviewed {
+  background-color: purple;
+}
+
+.reviewed.answered {
+  background-color: yellow;
+}
+
+.answerButton {
+  display: flex;
+  padding: 1em;
+  align-items: center;
+  height: 3em;
+  width: 100%;
+  border: 0;
+  background-color: transparent;
+  border-bottom: 1px solid gray;
+  border-top: 1px solid gray;
+  /* background-color: aqua; */
+  /* box-shadow: 0 0 1px 0 black; */
+}
+
+.answerButton.active {
+  background-color: aqua;
 }

@@ -10,10 +10,6 @@
   height: calc(100vh - (var(--header-height) + var(--footer-height)));
 }
 
-.main > * {
-  border: 1px solid black;
-}
-
 .nav {
   grid-area: nav;
   display: flex;
@@ -43,10 +39,15 @@
 
 .serial {
   position: absolute;
-  right: 1em;
+  left: 1em;
 }
 
 .options {
   position: absolute;
-  left: 1em;
+  right: 1em;
+}
+
+.contentHeaderRow {
+  background-color: var(--background-secondary);
+  color: var(--text-secondary);
 }

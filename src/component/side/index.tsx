@@ -2,11 +2,12 @@ import Info from "./info";
 import Legend from "./legend";
 import Pallet from "./pallet";
 
-export default function Side() {
+export default function Side(props: any) {
+  const { response } = props;
   return (
     <>
       <Info />
-      <Pallet />
+      <Pallet response={response} />
       <Legend />
     </>
   );

@@ -1,23 +1,88 @@
-import styles from "@/styles/page.module.css";
+"use client";
 
-export default function Comp() {
+import styles from "@/styles/page.module.css";
+import { useContext, useState } from "react";
+import AppContext from "./appContext";
+
+function DisplayQuestions(props: any) {
+  const [answer, setAnswer] = useState("");
+  const { currentQuestion } = useContext(AppContext);
+  const { instruction, question, options, number, selectAnswer, response } =
+    props;
+  let selected = props.selected;
+
+  let handleOnClick = (e: any) => {
+    selected = e.target.value;
+  };
+
+  let handleClass = (option: any) => {
+    let selected = response[currentQuestion.questionNumber].response;
+    console.log(selected);
+    return option === parseInt(selected) - 1
+      ? "answerButton active"
+      : "answerButton";
+  };
+
   return (
     <>
-      <div className="row">
-        <p className={styles.serial}>Hello</p>
-        <p className={styles.options}>world</p>
-      </div>
-      <div className="row">
-        <h1>Hello</h1>
-      </div>
-      <div className="row">
-        <p>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quam, amet
-          voluptas vel facere eaque dolorum veritatis explicabo aperiam laborum
-          nulla quae! Ex qui dolorem, minima delectus voluptatem praesentium
-          aliquid quia!
+      <div className={`row ${styles.contentHeaderRow}`}>
+        <p className={styles.serial}>Q No. {number}</p>
+        <p className={styles.options}>
+          View in:
+          <select>
+            <option>English</option>
+          </select>
         </p>
       </div>
+      <div className="row">
+        <h5 className="col">QUESTION INSTRUCTION</h5>
+        <h5 className="col">QUESTION</h5>
+      </div>
+      <div className="row">
+        <p className="col">{instruction}</p>
+        <div className="col">
+          {question}
+          {options.map((option: any, i: number) => (
+            <button
+              className={handleClass(i)}
+              key={i}
+              defaultValue={""}
+              name={number}
+              value={i + 1}
+              onClick={(e) => selectAnswer(e)}
+            >
+              ({i}) {option}
+            </button>
+          ))}
+        </div>
+      </div>
+    </>
+  );
+}
+
+export default function Comp(props: any) {
+  const { questions, selectAnswer, response } = props;
+  const value = useContext(AppContext);
+  const clientSectionState: string = value.section;
+
+  return (
+    <>
+      {questions &&
+        questions
+          .filter((que: any) =>
+            clientSectionState === "all"
+              ? que
+              : que.section === clientSectionState
+          )
+          .filter((que: any) => que.number === value.pageNumber)
+          .map((ques: any, i: number) => (
+            <DisplayQuestions
+              key={i}
+              selectAnswer={selectAnswer}
+              response={response}
+              {...ques}
+            />
+          ))}
     </>
   );
 }
