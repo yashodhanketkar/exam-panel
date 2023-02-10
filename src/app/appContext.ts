@@ -7,10 +7,14 @@ const currentQuestion = {
 
 export const defaultContext: {
     pageNumber: number,
+    pageStart: number,
+    pageEnd: number,
     section: string,
     currentQuestion: typeof currentQuestion,
 } = {
     pageNumber: 1,
+    pageStart: 1,
+    pageEnd: 1,
     section: 'all',
     currentQuestion: currentQuestion
 }

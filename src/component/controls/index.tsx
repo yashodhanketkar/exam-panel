@@ -4,11 +4,13 @@ import styles from "@/styles/components.module.css";
 import { useContext } from "react";
 
 export default function Controls(props: any) {
-  const { pageNumber, currentQuestion } = useContext(AppContext);
+  const { pageNumber, currentQuestion, pageStart, pageEnd } =
+    useContext(AppContext);
   const { setPageNumber, setCurrentQuestion, selectStatus, clearResponse } =
     props;
 
   let handleOnNext = () => {
+    if (pageEnd == pageNumber) return;
     setPageNumber(pageNumber + 1);
     setCurrentQuestion({
       ...currentQuestion,
@@ -17,6 +19,7 @@ export default function Controls(props: any) {
   };
 
   let handleOnPrev = () => {
+    if (pageStart == pageNumber) return;
     setPageNumber(pageNumber - 1);
     setCurrentQuestion({
       ...currentQuestion,
