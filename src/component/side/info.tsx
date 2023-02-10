@@ -1,12 +1,8 @@
 "use client";
 
 import Countdown from "react-countdown";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import styles from "@/styles/components.module.css";
-
-function getTimer(): number {
-  return 4.5;
-}
 
 function getImageLink(): string {
   return "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg";
@@ -16,10 +12,14 @@ function getName(): string {
   return "John Doe";
 }
 
+const defaultTime = 10800000;
+
 export default function Info() {
   const [key, setKey] = useState("");
+  const [time, setTime] = useState(Date.now() + defaultTime);
 
   let handleReset = () => {
+    setTime(defaultTime);
     setKey(`${Date.now()}`);
   };
 
@@ -33,7 +33,7 @@ export default function Info() {
       <div className={styles.infoTime}>
         Time Left:
         <span>
-          <Countdown key={key} date={Date.now() + 10800000}>
+          <Countdown key={key} date={time} precision={0}>
             <button onClick={handleReset}>Time over</button>
           </Countdown>
         </span>
