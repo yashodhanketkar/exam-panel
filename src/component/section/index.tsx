@@ -5,8 +5,8 @@ import styles from "@/styles/components.module.css";
 import { useContext } from "react";
 
 export default function Nav(props: any) {
-  const { setSection, setCurrentQuestion } = props;
-  const { section, pageStart, currentQuestion } = useContext(AppContext);
+  const { setSection } = props;
+  const { section } = useContext(AppContext);
 
   const sections = [
     {
@@ -29,10 +29,6 @@ export default function Nav(props: any) {
 
   let handleChange = (e: any) => {
     setSection(e.target.value);
-    setCurrentQuestion({
-      ...currentQuestion,
-      questionNumber: pageStart,
-    });
   };
 
   let handleClass = (name: any) => {
