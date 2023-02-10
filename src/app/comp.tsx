@@ -1,23 +1,16 @@
 "use client";
 
 import styles from "@/styles/page.module.css";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import AppContext from "./appContext";
 
 function DisplayQuestions(props: any) {
-  const [answer, setAnswer] = useState("");
   const { currentQuestion } = useContext(AppContext);
   const { instruction, question, options, number, selectAnswer, response } =
     props;
-  let selected = props.selected;
-
-  let handleOnClick = (e: any) => {
-    selected = e.target.value;
-  };
 
   let handleClass = (option: any) => {
     let selected = response[currentQuestion.questionNumber].response;
-    console.log(selected);
     return option === parseInt(selected) - 1
       ? "answerButton active"
       : "answerButton";

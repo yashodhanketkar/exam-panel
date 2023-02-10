@@ -8,7 +8,7 @@ export default function Side(props: any) {
     <>
       <Info />
       <Pallet response={response} />
-      <Legend />
+      <Legend response={response} />
     </>
   );
 }

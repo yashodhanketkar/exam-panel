@@ -76,7 +76,6 @@ export default function Home() {
     } else {
       Status = status;
     }
-    console.log(number, Status);
     setResponse({
       ...response,
       [number]: { ...response[number], status: Status },
