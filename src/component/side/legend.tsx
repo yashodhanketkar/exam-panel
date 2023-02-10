@@ -1,3 +1,4 @@
+import SampleQuestion from "@/app/data/sampleData";
 import styles from "@/styles/components.module.css";
 import Link from "next/link";
 
@@ -17,8 +18,8 @@ function LegendPopUp(props: any) {
 }
 
 export default function Legend(props: any) {
-  const questions = 10;
   const { response } = props;
+  const questions = SampleQuestion.length;
 
   let answered = 0;
   let notVisited = 0;

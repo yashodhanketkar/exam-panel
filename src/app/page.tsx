@@ -108,7 +108,6 @@ export default function Home(): React.ReactElement {
             selectAnswer={selectAnswer}
             response={response}
           />
-          {JSON.stringify(response)}
         </div>
         <div className={styles.controls}>
           <Controls

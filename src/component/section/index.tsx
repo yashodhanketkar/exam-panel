@@ -3,29 +3,11 @@
 import AppContext from "@/app/appContext";
 import styles from "@/styles/components.module.css";
 import { useContext } from "react";
+import { sections } from "@/app/data/sampleData";
 
 export default function Nav(props: any) {
   const { setSection } = props;
   const { section } = useContext(AppContext);
-
-  const sections = [
-    {
-      name: "all",
-      label: "All Sections",
-    },
-    {
-      name: "physics",
-      label: "PHYSICS",
-    },
-    {
-      name: "chemistry",
-      label: "CHEMISTRY",
-    },
-    {
-      name: "maths",
-      label: "MATHS",
-    },
-  ];
 
   let handleChange = (e: any) => {
     setSection(e.target.value);

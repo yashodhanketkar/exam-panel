@@ -18,23 +18,25 @@ function DisplayQuestions(props: any) {
 
   return (
     <>
-      <div className={`row ${styles.contentHeaderRow}`}>
-        <p className={styles.serial}>Q No. {number}</p>
-        <p className={styles.options}>
-          View in:
-          <select>
-            <option>English</option>
-          </select>
-        </p>
+      <div className={`${styles.serial} ${styles.contentHeaderRow}`}>
+        Q No. {number}
       </div>
-      <div className="row">
-        <h5 className="col">QUESTION INSTRUCTION</h5>
-        <h5 className="col">QUESTION</h5>
+      <div className={`${styles.option} ${styles.contentHeaderRow}`}>
+        View in:
+        <select>
+          <option>English</option>
+        </select>
       </div>
-      <div className="row">
-        <p className="col">{instruction}</p>
-        <div className="col">
-          {question}
+      <div className={styles.instructionHeader}>
+        <h5>QUESTION INSTRUCTION</h5>
+      </div>
+      <div className={styles.instruction}>{instruction}</div>
+      <div className={styles.questionHeader}>
+        <h5>QUESTION</h5>
+      </div>
+      <div className={styles.question}>
+        <div className="questions-statement">{question}</div>
+        <div>
           {options.map((option: any, i: number) => (
             <button
               className={handleClass(i)}

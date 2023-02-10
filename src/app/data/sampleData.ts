@@ -31,12 +31,31 @@ const SampleQuestion = [
 
 let defaultResponse: any = {};
 
-for (let i = 0; i < SampleQuestion.length; i++) {
+for (let i = 1; i < SampleQuestion.length + 1; i++) {
   defaultResponse[i] = {
     response: "",
     status: "not-visited",
   };
 }
+
+export const sections = [
+  {
+    name: "all",
+    label: "All Sections",
+  },
+  {
+    name: "physics",
+    label: "PHYSICS",
+  },
+  {
+    name: "chemistry",
+    label: "CHEMISTRY",
+  },
+  {
+    name: "maths",
+    label: "MATHS",
+  },
+];
 
 export const pageLimits: any = {
   all: {

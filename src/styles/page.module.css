@@ -31,23 +31,54 @@
 
 .content {
   grid-area: content;
+  display: grid;
+  grid-template-rows: 5% 5% auto;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-areas:
+    "serial option"
+    "instructionHeader questionHeader"
+    "instruction question";
 }
 
 .content > * {
   padding: 0.5em;
+  margin: 0.5px;
+  box-shadow: 0 0 3px 0 gray;
 }
 
 .serial {
-  position: absolute;
+  grid-area: serial;
+  display: flex;
+  justify-content: left;
+  align-items: center;
   left: 1em;
 }
 
-.options {
-  position: absolute;
+.option {
+  grid-area: option;
+  display: flex;
+  justify-content: right;
+  align-items: center;
   right: 1em;
 }
 
 .contentHeaderRow {
   background-color: var(--background-secondary);
   color: var(--text-secondary);
+}
+
+.instructionHeader {
+  grid-area: instructionHeader;
+}
+
+.questionHeader {
+  grid-area: questionHeader;
+}
+
+.instruction {
+  grid-area: instruction;
+}
+
+.question {
+  grid-area: question;
 }
