@@ -5,7 +5,11 @@ import styles from "@/styles/components.module.css";
 import { useContext } from "react";
 import { sections } from "@/app/data/sampleData";
 
-export default function Nav(props: any) {
+interface navProps {
+  setSection: (e: any) => void;
+}
+
+export default function Nav(props: navProps) {
   const { setSection } = props;
   const { section } = useContext(AppContext);
 
@@ -13,7 +17,7 @@ export default function Nav(props: any) {
     setSection(e.target.value);
   };
 
-  let handleClass = (name: any) => {
+  let handleClass = (name: any): string => {
     let setClassName = styles.linkButton;
     if (name === section) {
       setClassName += ` ${styles.active}`;

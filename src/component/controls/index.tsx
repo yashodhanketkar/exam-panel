@@ -3,7 +3,20 @@ import AppContext from "@/app/appContext";
 import styles from "@/styles/components.module.css";
 import { useContext } from "react";
 
-export default function Controls(props: any) {
+interface controlsProps {
+  setPageNumber: (pageNumber: number) => void;
+  setCurrentQuestion: ({
+    questionNumber,
+    questionStatus,
+  }: {
+    questionNumber: number;
+    questionStatus: string;
+  }) => void;
+  selectStatus: (status: string) => void;
+  clearResponse: () => void;
+}
+
+export default function Controls(props: controlsProps) {
   const { pageNumber, currentQuestion, pageStart, pageEnd } =
     useContext(AppContext);
   const { setPageNumber, setCurrentQuestion, selectStatus, clearResponse } =

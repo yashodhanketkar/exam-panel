@@ -3,13 +3,25 @@
 import styles from "@/styles/page.module.css";
 import { useContext } from "react";
 import AppContext from "./appContext";
+import { SampleQuestionType } from "./data/sampleData";
 
-function DisplayQuestions(props: any) {
+interface displayQuestions extends SampleQuestionType {
+  selectAnswer: (e: any) => void;
+  response: any[];
+}
+
+interface compProp {
+  questions: SampleQuestionType[];
+  selectAnswer: (e: any) => void;
+  response: any[];
+}
+
+function DisplayQuestions(props: displayQuestions) {
   const { currentQuestion } = useContext(AppContext);
   const { instruction, question, options, number, selectAnswer, response } =
     props;
 
-  let handleClass = (option: any) => {
+  let handleClass = (option: any): string => {
     let selected = response[currentQuestion.questionNumber].response;
     return option === parseInt(selected) - 1
       ? "answerButton active"
@@ -42,7 +54,7 @@ function DisplayQuestions(props: any) {
               className={handleClass(i)}
               key={i}
               defaultValue={""}
-              name={number}
+              name={number.toString()}
               value={i + 1}
               onClick={(e) => selectAnswer(e)}
             >
@@ -55,7 +67,7 @@ function DisplayQuestions(props: any) {
   );
 }
 
-export default function Comp(props: any) {
+export default function Comp(props: compProp) {
   const { questions, selectAnswer, response } = props;
   const value = useContext(AppContext);
   const clientSectionState: string = value.section;

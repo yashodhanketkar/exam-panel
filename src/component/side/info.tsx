@@ -12,14 +12,14 @@ function getName(): string {
   return "John Doe";
 }
 
-const defaultTime = 10800000;
+const DEFAULTTIME = 10800000;
 
 export default function Info() {
   const [key, setKey] = useState("");
-  const [time, setTime] = useState(Date.now() + defaultTime);
+  const [time, setTime] = useState(Date.now() + DEFAULTTIME);
 
   let handleReset = () => {
-    setTime(defaultTime);
+    setTime(DEFAULTTIME);
     setKey(`${Date.now()}`);
   };
 

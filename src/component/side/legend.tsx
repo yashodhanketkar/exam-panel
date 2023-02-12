@@ -2,7 +2,16 @@ import SampleQuestion from "@/app/data/sampleData";
 import styles from "@/styles/components.module.css";
 import Link from "next/link";
 
-function LegendPopUp(props: any) {
+interface Iprops {
+  legendpopup: {
+    questions: number;
+  };
+  legend: {
+    response: any[];
+  };
+}
+
+function LegendPopUp(props: Iprops["legendpopup"]) {
   const { questions } = props;
   return (
     <div className={styles.popUp}>
@@ -17,7 +26,7 @@ function LegendPopUp(props: any) {
   );
 }
 
-export default function Legend(props: any) {
+export default function Legend(props: Iprops["legend"]) {
   const { response } = props;
   const questions = SampleQuestion.length;
 

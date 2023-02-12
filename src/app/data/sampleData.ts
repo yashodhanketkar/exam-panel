@@ -1,4 +1,4 @@
-interface SampleQuestionType {
+export interface SampleQuestionType {
   number: number;
   section: string;
   instruction: string;

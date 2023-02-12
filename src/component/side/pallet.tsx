@@ -2,7 +2,12 @@
 
 import styles from "@/styles/components.module.css";
 
-export default function Pallet(props: any) {
+interface palletProps {
+  response: any[];
+  handlePageLink: (e: any) => void;
+}
+
+export default function Pallet(props: palletProps) {
   let { response, handlePageLink } = props;
 
   return (

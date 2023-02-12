@@ -2,7 +2,12 @@ import Info from "./info";
 import Legend from "./legend";
 import Pallet from "./pallet";
 
-export default function Side(props: any) {
+interface sideProp {
+  response: any[];
+  handlePageLink: (e: any) => void;
+}
+
+export default function Side(props: sideProp) {
   const { response, handlePageLink } = props;
   return (
     <>

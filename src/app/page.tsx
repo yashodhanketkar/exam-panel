@@ -91,13 +91,7 @@ export default function Home(): React.ReactElement {
     >
       <main className={styles.main}>
         <nav className={styles.nav}>
-          <Nav
-            setSection={setSection}
-            setPageStart={setPageStart}
-            setPageEnd={setPageEnd}
-            setPageNumber={setPageNumber}
-            setCurrentQuestion={setCurrentQuestion}
-          />
+          <Nav setSection={setSection} />
         </nav>
         <div className={styles.side}>
           <Side response={response} handlePageLink={handlePageLink} />

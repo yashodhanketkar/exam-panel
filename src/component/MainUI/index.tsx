@@ -1,6 +1,11 @@
 import styles from "@/styles/mainui.module.css";
 
-export default function MainUI({ children }: any) {
+interface mainuiProps {
+  children: React.ReactElement;
+}
+
+export default function MainUI(props: mainuiProps) {
+  const { children } = props;
   const headerClass = [styles.mainui, styles.header];
   const footerClass = [styles.mainui, styles.footer];
 
