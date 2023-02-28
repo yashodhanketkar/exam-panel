@@ -13,7 +13,7 @@ export default function MainUI(props: mainuiProps) {
     <>
       <header className={headerClass.join(" ")}>DEMO ONLINE TEST</header>
       <main className={styles.main}>{children}</main>
-      <footer className={footerClass.join(" ")}>©Addmen</footer>
+      <footer className={footerClass.join(" ")}>©Yashodhan Ketkar</footer>
     </>
   );
 }
