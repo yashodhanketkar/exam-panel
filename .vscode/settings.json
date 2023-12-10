@@ -9,14 +9,11 @@
   "editor.inlayHints.enabled": "offUnlessPressed",
   "[typescriptreact]": {
     "editor.formatOnSave": true,
-    "editor.tabSize": 2,
+    "editor.tabSize": 2
   },
   "[css]": {
     "editor.suggest.insertMode": "replace",
-    "gitlens.codeLens.scopes": [
-      "document"
-    ],
     "editor.tabSize": 2,
-    "editor.formatOnSave": true,
-  },
+    "editor.formatOnSave": true
+  }
 }

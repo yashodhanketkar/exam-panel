@@ -1,4 +1,5 @@
 import { Footer, Header } from "@/components/MainUI";
+import { ReduxWrapper } from "@/context/wrapper";
 import { Metadata } from "next";
 import "./global.css";
 
@@ -11,9 +12,11 @@ export default function RootLayout({ children }: any) {
   return (
     <html lang="en">
       <body className="min-h-screen overflow-x-hidden flex flex-col justify-between">
-          <Header />
-          <main className="mb-auto">{children}</main>
-          <Footer />
+        <Header />
+        <main className="flex-grow">
+          <ReduxWrapper>{children}</ReduxWrapper>
+        </main>
+        <Footer />
       </body>
     </html>
   );

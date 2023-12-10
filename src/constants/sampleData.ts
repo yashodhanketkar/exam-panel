@@ -1,12 +1,22 @@
-export interface SampleQuestionType {
+export type SampleQuestionType = {
   number: number;
   section: string;
   instruction: string;
   question: string;
   options: string[];
-}
+  status: QuestionStatus;
+  selected?: number;
+};
 
-const SampleQuestion: SampleQuestionType[] = [
+export type QuestionStatus =
+  | "unsolved"
+  | "answered"
+  | "notVisited"
+  | "reviewed"
+  | "reviewedAnswered"
+  | "dumped";
+
+export const SampleQuestion: SampleQuestionType[] = [
   {
     number: 1,
     section: "physics",
@@ -19,6 +29,7 @@ const SampleQuestion: SampleQuestionType[] = [
       "Presence of mercury in LED lamp makes it efficient",
       "Materials used for LED production have very high refractive indices",
     ],
+    status: "notVisited",
   },
   {
     number: 2,
@@ -27,6 +38,7 @@ const SampleQuestion: SampleQuestionType[] = [
     question:
       "1. While PSLV is designed mainly to deliver the earth-observation satellites, GSLV is designed mainly to deliver the communication-satellites 2. While PSLV is a three stage vehicle, GSLV is four stage vehicle",
     options: ["Only 1", "Only 2", "Both 1 & 2", "Neither 1 nor 2"],
+    status: "notVisited",
   },
   {
     number: 3,
@@ -35,6 +47,7 @@ const SampleQuestion: SampleQuestionType[] = [
       "Which among the following affect the propagation of the Radio Waves in the atmosphere of earth?",
     question: "1. Reflection 2. Refraction 3. Diffraction 4. Absorption",
     options: ["Only 1, 2 & 3", "Only 1, 3 & 4", "Only 1, 2 & 4", "1, 2, 3 & 4"],
+    status: "notVisited",
   },
   {
     number: 4,
@@ -43,6 +56,7 @@ const SampleQuestion: SampleQuestionType[] = [
     question:
       "1. a dimensionless quantity 2. inversely proportional to viscosity of liquid 3. directly proportional to velocity of liquid 4. used for quantifying the laminar or turbulent flow of liquid",
     options: ["Only 1 & 2", "Only 1, 2 & 3", "Only 2, 3 & 4", "1, 2, 3 & 4"],
+    status: "notVisited",
   },
   {
     number: 5,
@@ -51,6 +65,7 @@ const SampleQuestion: SampleQuestionType[] = [
     question:
       "Multiplication of equivalent weight and valency of an element is equal to ___.",
     options: ["Density", "Relative temperature", "Atomic weigh", "Atomicity"],
+    status: "notVisited",
   },
   {
     number: 6,
@@ -59,6 +74,7 @@ const SampleQuestion: SampleQuestionType[] = [
     question:
       "Elements having same atomic numbers but different mass number are called ___.",
     options: ["isotones", "isotopes", "isotobes", "isobar"],
+    status: "notVisited",
   },
   {
     number: 7,
@@ -72,6 +88,7 @@ const SampleQuestion: SampleQuestionType[] = [
       "Chromatography",
       "Sublimation",
     ],
+    status: "notVisited",
   },
   {
     number: 8,
@@ -80,6 +97,7 @@ const SampleQuestion: SampleQuestionType[] = [
     question:
       "A fraction which bears the same ratio to 1/27 as 3/11 bear to 5/9 is equal to ___.",
     options: ["1/55", "55", "3/11", "1/11"],
+    status: "notVisited",
   },
   {
     number: 9,
@@ -88,6 +106,7 @@ const SampleQuestion: SampleQuestionType[] = [
     question:
       "A clock strikes once at 1 o'clock, twice at 2 o'clock, thrice at 3 o'clock and so on. How many times will it strike in 24 hours?",
     options: ["78", "136", "156", "196"],
+    status: "notVisited",
   },
   {
     number: 10,
@@ -96,6 +115,7 @@ const SampleQuestion: SampleQuestionType[] = [
     question:
       "Which of the following numbers gives 240 when added to its own square?",
     options: ["15", "16", "18", "20"],
+    status: "notVisited",
   },
 ];
 
@@ -147,4 +167,3 @@ export const pageLimits: any = {
 };
 
 export { defaultResponse };
-export default SampleQuestion;
