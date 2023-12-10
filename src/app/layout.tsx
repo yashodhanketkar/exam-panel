@@ -1,16 +1,19 @@
-import MainUI from "@/component/MainUI";
-import "@/styles/globals.css";
+import { Footer, Header } from "@/components/MainUI";
+import { Metadata } from "next";
+import "./global.css";
+
+export const metadata: Metadata = {
+  title: "Exam-Panel",
+  description: "Exam panel with redux and tailwind",
+};
 
 export default function RootLayout({ children }: any) {
   return (
     <html lang="en">
-      {/*
-        <head /> will contain the components returned by the nearest parent
-        head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
-      */}
-      <head />
-      <body>
-        <MainUI>{children}</MainUI>
+      <body className="min-h-screen overflow-x-hidden flex flex-col justify-between">
+          <Header />
+          <main className="mb-auto">{children}</main>
+          <Footer />
       </body>
     </html>
   );
