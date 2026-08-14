@@ -2,28 +2,30 @@
 
 import type { Section } from "@/context/features/sectionSlice";
 import { select } from "@/context/features/sectionSlice";
-import { RootState } from "@/context/store";
 import { useDispatch, useSelector } from "react-redux";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { RootState } from "@/context/store";
 
 const availSection: Section[] = ["all", "physics", "chemistry", "maths"];
 
 export const Nav = () => {
   const dispatch = useDispatch();
-  const section = useSelector((state: RootState) => state.section.value);
+  const activeSection = useSelector((state: RootState) => state.section);
 
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-4 gap-1 p-2 lg:w-2/3">
-      {availSection.map((sec, i) => (
-        <button
-          key={i}
-          onClick={() => dispatch(select(sec))}
-          className={`controls ring-1 ${
-            section === sec ? "font-semibold ring-black/30" : "ring-black/0 "
-          }`}
-        >
-          {sec}
-        </button>
-      ))}
-    </div>
+    <Tabs value={activeSection.value}>
+      <TabsList className="m-2 space-x-2">
+        {availSection.map((sec) => (
+          <TabsTrigger
+            className="p-2 capitalize"
+            onClick={() => dispatch(select(sec))}
+            value={sec}
+            key={sec}
+          >
+            {sec}
+          </TabsTrigger>
+        ))}
+      </TabsList>
+    </Tabs>
   );
 };

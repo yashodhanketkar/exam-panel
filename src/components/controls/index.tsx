@@ -4,6 +4,7 @@ import { solve } from "@/context/features/questionSlice";
 import { pageDown, pageUp } from "@/context/features/sectionSlice";
 import { RootState } from "@/context/store";
 import { useDispatch, useSelector } from "react-redux";
+import { Button } from "../ui/button";
 
 export const Controls = () => {
   const dispatch = useDispatch();
@@ -15,7 +16,7 @@ export const Controls = () => {
         number: page + 1,
         status: "notVisited",
         selected: NaN,
-      })
+      }),
     );
 
   const handleReview = () =>
@@ -23,7 +24,7 @@ export const Controls = () => {
       solve({
         number: page + 1,
         status: "reviewed",
-      })
+      }),
     );
 
   const handleDump = () =>
@@ -32,26 +33,26 @@ export const Controls = () => {
         number: page + 1,
         status: "dumped",
         selected: NaN,
-      })
+      }),
     );
 
   return (
     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-1 w-full xl:w-fit p-2 xl:fixed xl:bottom-16">
-      <button onClick={handleClear} className="controls">
-        clear response
-      </button>
-      <button onClick={handleReview} className="controls">
-        review
-      </button>
-      <button onClick={handleDump} className="controls">
-        dump
-      </button>
-      <button onClick={() => dispatch(pageDown())} className="controls">
-        previous
-      </button>
-      <button onClick={() => dispatch(pageUp())} className="controls">
-        next
-      </button>
+      <Button onClick={handleClear} className="controls">
+        Clear Response
+      </Button>
+      <Button onClick={handleReview} className="controls">
+        Review
+      </Button>
+      <Button onClick={handleDump} className="controls">
+        Dump
+      </Button>
+      <Button onClick={() => dispatch(pageDown())} className="controls">
+        Previous
+      </Button>
+      <Button onClick={() => dispatch(pageUp())} className="controls">
+        Next
+      </Button>
     </div>
   );
 };

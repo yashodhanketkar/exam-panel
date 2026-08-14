@@ -1,12 +1,17 @@
 "use client";
 
-import Image from "next/image";
+import { UserRound } from "lucide-react";
 import { useState } from "react";
 import Countdown from "react-countdown";
-
-function getImageLink(): string {
-  return "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg";
-}
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "../ui/card";
+import { Button } from "../ui/button";
 
 const DEFAULTTIME = 1000 * 60 * 30;
 
@@ -20,29 +25,27 @@ export const Info = () => {
   };
 
   return (
-    <div className="flex flex-col lg:flex-row">
-      <div className="w-32">
-        <Image
-          src={getImageLink()}
-          alt="Profile picture"
-          width={300}
-          height={600}
-          className="w-auto h-auto aspect-[1/1.25] rounded-md"
-        />
-      </div>
-      <div className="py-1 px-2">
-        <p className="flex flex-col w-full">
-          Time Left:
-          <span>
-            <Countdown key={key} date={time} precision={0}>
-              <button onClick={handleReset}>Time over</button>
-            </Countdown>
+    <Card>
+      <CardHeader>
+        <CardTitle className="flex flex-row items-center gap-2">
+          <span className="ring ring-black/25 rounded-full p-1">
+            <UserRound />
           </span>
-        </p>
-        <p className="flex flex-col w-full">
-          Name:<span>John Doe</span>
-        </p>
-      </div>
-    </div>
+          <span>John Doe</span>
+        </CardTitle>
+        <CardDescription>Examinee details</CardDescription>
+        <CardAction onClick={handleReset}>
+          <Button onClick={handleReset}>Restart</Button>
+        </CardAction>
+      </CardHeader>
+      <CardContent>
+        Time Left:
+        <span className="mx-2">
+          <Countdown key={key} date={time} precision={0}>
+            <button onClick={handleReset}>Time over</button>
+          </Countdown>
+        </span>
+      </CardContent>
+    </Card>
   );
 };
