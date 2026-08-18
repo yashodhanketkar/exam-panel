@@ -27,16 +27,16 @@ export const sectionSlice = createSlice({
 
       if (action.payload === "all") {
         state.min = 0;
-        state.max = SampleQuestion.length;
+        state.max = SampleQuestion.length - 1;
       } else {
         const currSample = SampleQuestion.filter(
-          (ele) => ele.section === action.payload
+          (ele) => ele.section === action.payload,
         );
         state.min = SampleQuestion.findIndex(
-          (ele) => ele.number === currSample.at(0)?.number
+          (ele) => ele.number === currSample.at(0)?.number,
         );
         state.max = SampleQuestion.findIndex(
-          (ele) => ele.number === currSample.at(-1)?.number
+          (ele) => ele.number === currSample.at(-1)?.number,
         );
 
         if (state.page < state.min || state.page > state.max) {
@@ -55,8 +55,15 @@ export const sectionSlice = createSlice({
       if (state.page - 1 < state.min) return;
       state.page = state.page - 1;
     },
+    reset: (state) => {
+      state.min = 0;
+      state.max = SampleQuestion.length - 1;
+      state.page = state.min;
+      state.value = "all";
+    },
   },
 });
 
-export const { select, pageDown, pageUp, setPage } = sectionSlice.actions;
+export const { select, pageDown, pageUp, setPage, reset } =
+  sectionSlice.actions;
 export const reducer = sectionSlice.reducer;

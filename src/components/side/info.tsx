@@ -1,48 +1,73 @@
 "use client";
 
-import Image from "next/image";
-import { useState } from "react";
+import { UserRound } from "lucide-react";
 import Countdown from "react-countdown";
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "../ui/card";
+import { Button } from "../ui/button";
+import { useDispatch, useSelector } from "react-redux";
+import { reset as resetSection } from "@/context/features/sectionSlice";
+import { reset as resetQuestion } from "@/context/features/questionSlice";
+import { setGlobalTimer } from "@/context/features/timerSlice";
+import { useEffect, useState } from "react";
+import { RootState } from "@/context/store";
 
-function getImageLink(): string {
-  return "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg";
-}
-
-const DEFAULTTIME = 1000 * 60 * 30;
+const LIMIT = 1000 * 60 * 30;
 
 export const Info = () => {
-  const [key, setKey] = useState("");
-  const [time, setTime] = useState(Date.now() + DEFAULTTIME);
+  const dispatch = useDispatch();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!timeStamp) {
+      setGlobalTimer(Date.now() + LIMIT);
+    }
+  });
 
   let handleReset = () => {
-    setTime(DEFAULTTIME);
-    setKey(`${Date.now()}`);
+    const newLimit = Date.now() + LIMIT;
+    dispatch(setGlobalTimer(newLimit));
+    dispatch(resetSection());
+    dispatch(resetQuestion());
   };
 
+  const state = useSelector((state: RootState) => state.timer);
+  const timeStamp = state.timestamp;
+
   return (
-    <div className="flex flex-col lg:flex-row">
-      <div className="w-32">
-        <Image
-          src={getImageLink()}
-          alt="Profile picture"
-          width={300}
-          height={600}
-          className="w-auto h-auto aspect-[1/1.25] rounded-md"
-        />
-      </div>
-      <div className="py-1 px-2">
-        <p className="flex flex-col w-full">
+    <Card>
+      <CardHeader>
+        <CardTitle className="flex flex-row items-center gap-2">
+          <span className="ring ring-black/25 rounded-full p-1">
+            <UserRound />
+          </span>
+          <span>John Doe</span>
+        </CardTitle>
+        <CardDescription>Examinee details</CardDescription>
+        <CardAction onClick={handleReset}>
+          <Button onClick={handleReset}>Restart</Button>
+        </CardAction>
+      </CardHeader>
+      {mounted && (
+        <CardContent>
           Time Left:
-          <span>
-            <Countdown key={key} date={time} precision={0}>
+          <span className="mx-2">
+            <Countdown key={Math.random()} date={timeStamp!} precision={0}>
               <button onClick={handleReset}>Time over</button>
             </Countdown>
           </span>
-        </p>
-        <p className="flex flex-col w-full">
-          Name:<span>John Doe</span>
-        </p>
-      </div>
-    </div>
+        </CardContent>
+      )}
+    </Card>
   );
 };
