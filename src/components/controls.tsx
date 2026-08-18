@@ -4,7 +4,8 @@ import { solve } from "@/context/features/questionSlice";
 import { pageDown, pageUp } from "@/context/features/sectionSlice";
 import { RootState } from "@/context/store";
 import { useDispatch, useSelector } from "react-redux";
-import { Button } from "../ui/button";
+import { Button } from "./ui/button";
+import { ButtonGroup } from "./ui/button-group";
 
 export const Controls = () => {
   const dispatch = useDispatch();
@@ -37,7 +38,7 @@ export const Controls = () => {
     );
 
   return (
-    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-1 w-full xl:w-fit p-2 xl:fixed xl:bottom-16">
+    <ButtonGroup className="absolute bottom-16 left-4">
       <Button onClick={handleClear} className="controls">
         Clear Response
       </Button>
@@ -53,6 +54,6 @@ export const Controls = () => {
       <Button onClick={() => dispatch(pageUp())} className="controls">
         Next
       </Button>
-    </div>
+    </ButtonGroup>
   );
 };

@@ -78,7 +78,7 @@ const LegendContent = ({ items }: { items: Record<string, number> }) => {
         <Badge
           key={name + value}
           variant="outline"
-          className={cn(name.toLowerCase(), "w-full p-4 rounded-full")}
+          className={cn(name.toLowerCase(), "w-full p-4 rounded-sm")}
         >{`${name}: ${value}`}</Badge>
       ))}
     </ItemGroup>
