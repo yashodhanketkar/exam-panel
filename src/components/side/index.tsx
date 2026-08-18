@@ -1,13 +1,15 @@
 "use client";
 
 import { useIsMobile } from "@/hooks/use-mobile";
-import { Menu } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import {
   Drawer,
   DrawerContent,
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
+  DrawerDescription,
+  DrawerClose,
 } from "../ui/drawer";
 import { LegendActions } from "./actions";
 import { Info } from "./info";
@@ -32,21 +34,17 @@ export const Side = () => {
       </Drawer>
     );
 
-  return (
-    <div className="flex flex-col space-y-2 my-2 w-">
-      <SideContent />
-    </div>
-  );
+  return <SideContent />;
 };
 
 const SideContent = () => {
   return (
-    <>
+    <div className="flex flex-col space-y-2 my-2 w-">
       <Info />
       <Pallet />
       <Legend />
       <LegendActions />
-    </>
+    </div>
   );
 };
 
@@ -54,9 +52,21 @@ export const SideDrawer = () => {
   return (
     <DrawerContent>
       <DrawerHeader>
-        <DrawerTitle>Demo Test Options</DrawerTitle>
+        <DrawerTitle>Options</DrawerTitle>
+        <DrawerDescription>Reset, Review, and more actions</DrawerDescription>
+        <DrawerCloser />
         <SideContent />
       </DrawerHeader>
     </DrawerContent>
   );
 };
+
+const DrawerCloser = () => (
+  <DrawerClose
+    render={
+      <Button size="icon" className="fixed top-2 right-2" variant="outline">
+        <X className="stroke-red-500" />
+      </Button>
+    }
+  />
+);

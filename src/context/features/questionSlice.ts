@@ -24,9 +24,12 @@ export const questionSlice = createSlice({
   name: "question",
   initialState,
   reducers: {
+    reset: (state) => {
+      state.value = SampleQuestion;
+    },
     solve: (state, action: PayloadAction<SolvePayload>) => {
       const curr = state.value.find(
-        (ele) => ele.number === action.payload.number
+        (ele) => ele.number === action.payload.number,
       );
       if (!curr) return;
       state.value = state.value.map((ele) => {
@@ -44,5 +47,5 @@ export const questionSlice = createSlice({
   },
 });
 
-export const { solve } = questionSlice.actions;
+export const { solve, reset } = questionSlice.actions;
 export const reducer = questionSlice.reducer;

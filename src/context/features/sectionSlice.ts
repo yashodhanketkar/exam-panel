@@ -55,8 +55,15 @@ export const sectionSlice = createSlice({
       if (state.page - 1 < state.min) return;
       state.page = state.page - 1;
     },
+    reset: (state) => {
+      state.min = 0;
+      state.max = SampleQuestion.length - 1;
+      state.page = state.min;
+      state.value = "all";
+    },
   },
 });
 
-export const { select, pageDown, pageUp, setPage } = sectionSlice.actions;
+export const { select, pageDown, pageUp, setPage, reset } =
+  sectionSlice.actions;
 export const reducer = sectionSlice.reducer;

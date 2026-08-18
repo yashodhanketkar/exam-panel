@@ -6,10 +6,19 @@ import { RootState } from "@/context/store";
 import { useDispatch, useSelector } from "react-redux";
 import { Button } from "./ui/button";
 import { ButtonGroup } from "./ui/button-group";
+import { useEffect, useMemo, useState } from "react";
 
 export const Controls = () => {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   const dispatch = useDispatch();
-  const page = useSelector((state: RootState) => state.section.page);
+  const { page, min, max } = useSelector((state: RootState) => state.section);
+  const disablePrev = useMemo(() => page === min, [page, min]);
+  const disableNext = useMemo(() => page === max, [page, max]);
 
   const handleClear = () =>
     dispatch(
@@ -37,6 +46,8 @@ export const Controls = () => {
       }),
     );
 
+  if (!mounted) return null;
+
   return (
     <ButtonGroup className="absolute bottom-16 left-4">
       <Button onClick={handleClear} className="controls">
@@ -48,10 +59,18 @@ export const Controls = () => {
       <Button onClick={handleDump} className="controls">
         Dump
       </Button>
-      <Button onClick={() => dispatch(pageDown())} className="controls">
+      <Button
+        onClick={() => dispatch(pageDown())}
+        disabled={!mounted ? true : disablePrev}
+        className="controls"
+      >
         Previous
       </Button>
-      <Button onClick={() => dispatch(pageUp())} className="controls">
+      <Button
+        onClick={() => dispatch(pageUp())}
+        disabled={!mounted ? true : disableNext}
+        className="controls"
+      >
         Next
       </Button>
     </ButtonGroup>
